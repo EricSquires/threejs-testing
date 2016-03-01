@@ -1,6 +1,6 @@
 /* global THREE */
 (function() {
-  var scene, camera, renderer, block;
+  var scene, camera, renderer, blocks;
   
   function init() {
     scene = new THREE.Scene();
@@ -24,16 +24,20 @@
     light.position.set(-20, -20, 5);
     scene.add(light);
     
-    block = new Block(0, 0, 3, 1);
-    block.addToScene(scene);
+    light = new THREE.PointLight(0x00ff00, 1, 100);
+    light.position.set(0, 0, 5);
+    scene.add(light);
+    
+    blocks = [new Block(0, 0, 1, 3), new Block(4, 0, 3, 1), new Block(-4, 0, 3, 1)];
+    blocks.map(function(b) { b.addToScene(scene) });
 
-    camera.position.z = 5;
+    camera.position.z = 10;
   }
   
   function render() {
     requestAnimationFrame( render );
     
-    block.render();
+    blocks.map(function(b) { b.render() });
     
     renderer.render( scene, camera );
   }
