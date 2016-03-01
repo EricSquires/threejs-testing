@@ -9,6 +9,8 @@
     renderer = new THREE.WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
+    
+    window.addEventListener( 'resize', onWindowResize, false );
   }
   
   function generate() {
@@ -34,6 +36,15 @@
     cube.rotation.y += 0.02;
     
     renderer.render( scene, camera );
+  }
+  
+  function onWindowResize() {
+
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize( window.innerWidth, window.innerHeight );
+
   }
   
   init();
