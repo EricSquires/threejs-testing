@@ -16,12 +16,16 @@
   function generate() {
     scene.add(new THREE.AmbientLight(0x404040));
     
-    var light = new THREE.PointLight(0xffffff, 1, 0);
-    light.position.set(20, 20, 0);
+    var light = new THREE.PointLight(0xff0000, 1, 100);
+    light.position.set(20, 20, 5);
+    scene.add(light);
+    
+    light = new THREE.PointLight(0x0000ff, 1, 100);
+    light.position.set(-20, -20, 5);
     scene.add(light);
     
     var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    var material = new THREE.MeshLambertMaterial( { color: 0x00ff00 } );
+    var material = new THREE.MeshLambertMaterial( { color: 0xffffff } );
     
     cube = new THREE.Mesh( geometry, material );
     scene.add( cube );
