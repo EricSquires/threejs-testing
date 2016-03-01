@@ -1,6 +1,6 @@
 /* global THREE */
 (function() {
-  var scene, camera, renderer, cube;
+  var scene, camera, renderer, block;
   
   function init() {
     scene = new THREE.Scene();
@@ -24,11 +24,8 @@
     light.position.set(-20, -20, 5);
     scene.add(light);
     
-    var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    var material = new THREE.MeshLambertMaterial( { color: 0xffffff } );
-    
-    cube = new THREE.Mesh( geometry, material );
-    scene.add( cube );
+    block = new Block(0, 0, 3, 1);
+    block.addToScene(scene);
 
     camera.position.z = 5;
   }
@@ -36,8 +33,7 @@
   function render() {
     requestAnimationFrame( render );
     
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.02;
+    block.render();
     
     renderer.render( scene, camera );
   }
