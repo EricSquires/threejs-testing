@@ -14,14 +14,14 @@
   }
   
   function generate() {
-    var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-    
-    scene.add(new THREE.AmbientLight(0xffffff));
+    scene.add(new THREE.AmbientLight(0x404040));
     
     var light = new THREE.PointLight(0xffffff, 1, 0);
     light.position.set(20, 20, 0);
     scene.add(light);
+    
+    var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+    var material = new THREE.MeshLambertMaterial( { color: 0x00ff00 } );
     
     cube = new THREE.Mesh( geometry, material );
     scene.add( cube );
