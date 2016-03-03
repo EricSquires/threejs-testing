@@ -1,3 +1,4 @@
+/* global THREE */
 var Block = function(x, y, width, height) {
   this.x = x;
   this.y = y;
@@ -34,9 +35,9 @@ Block.prototype = {
   },
   
   render: function() {
-    this.mesh.rotateX(this.xRot);
-    this.mesh.rotateY(this.yRot);
+    //this.mesh.rotateX(this.xRot);
+    //this.mesh.rotateY(this.yRot);
     
-    this.incrementRotation();
+    //this.incrementRotation();
   }
 }

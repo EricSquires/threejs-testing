@@ -1,6 +1,6 @@
 /* global THREE */
 (function() {
-  var scene, camera, renderer, blocks;
+  var scene, camera, renderer, level;
   
   function init() {
     scene = new THREE.Scene();
@@ -28,16 +28,40 @@
     light.position.set(0, 0, 5);
     scene.add(light);
     
-    blocks = [new Block(0, 0, 1, 3), new Block(4, 0, 3, 1), new Block(-4, 0, 3, 1)];
-    blocks.map(function(b) { b.addToScene(scene) });
+    loadLevel('src/level1.json', scene);
 
-    camera.position.z = 10;
+    camera.position.z = 50;
+  }
+  
+  function loadJSON(jsonPath, callback) {
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', jsonPath, true);
+    
+    xobj.onreadystatechange = function() {
+      if (xobj.readyState == 4 && xobj.status == 200) {
+        callback(xobj.responseText);
+      }
+    };
+    
+    xobj.send(null);
+  }
+  
+  function loadLevel(jsonFile, scene) {
+    loadJSON(jsonFile, function(response) {
+      level = JSON.parse(response);
+      level.blocks = level.blocks.map(function(b) { 
+        var block = new Block(b.x, b.y, b.width, b.height);
+        block.addToScene(scene);
+        return block;
+      });
+    });
   }
   
   function render() {
     requestAnimationFrame( render );
     
-    blocks.map(function(b) { b.render() });
+    level.blocks.map(function(b) { b.render() });
     
     renderer.render( scene, camera );
   }

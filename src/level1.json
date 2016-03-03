@@ -1,0 +1,7 @@
+{
+  "blocks": [
+    {"x": -50, "y": 2, "width": 10, "height": 2},
+    {"x": 40, "y": 2, "width": 10, "height": 2},
+    {"x": -5, "y": 2, "width": 10, "height": 2}
+  ]
+}
