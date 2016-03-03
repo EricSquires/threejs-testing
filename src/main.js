@@ -61,7 +61,9 @@
   function render() {
     requestAnimationFrame( render );
     
-    level.blocks.map(function(b) { b.render() });
+    if(level) {
+      level.blocks.map(function(b) { b.render() });
+    }
     
     renderer.render( scene, camera );
   }
